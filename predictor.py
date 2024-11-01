@@ -9,7 +9,7 @@ from lime.lime_tabular import LimeTabularExplainer
 
 # 加载模型和测试数据
 model = joblib.load('APP.pkl')
-X_test = pd.read_csv('C:\\Users\\zl173\\Desktop\\APP\\x_test_app.csv')
+X_test = pd.read_csv("C:\\Users\\zl173\\Desktop\\APP\\x_test_app.csv")
 
 # 定义特征名称
 feature_names = ["AGE", "SEX", "SMOKE", "HP", "COPD", "DM", "CHD",
