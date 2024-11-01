@@ -69,10 +69,3 @@ else:
     shap.force_plot(explainer_shap.expected_value[0], shap_values[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
 plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
 st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation')
-
-# 显示 LIME 解释
-st.subheader("LIME Explanation")
-lime_explainer = LimeTabularExplainer(training_data=X_test.values, feature_names=X_test.columns.tolist(), class_names=['Not sick', 'Sick'], mode='classification')
-lime_exp = lime_explainer.explain_instance(data_row=features.flatten(), predict_fn=model.predict_proba)
-lime_html = lime_exp.as_html(show_table=False)
-components.html(lime_html, height=800, scrolling=True)
