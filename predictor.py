@@ -58,14 +58,3 @@ if predicted_class == 1:
 else:
     advice = f"According to our model, you have a low risk of lung cancer. The model predicts that your probability of not having lung cancer is {probability:.1f}%. However, maintaining a healthy lifestyle is important. Please continue regular check-ups with your healthcare provider."
 st.write(advice)
-
-# 显示 SHAP 解释
-st.subheader("SHAP Force Plot Explanation")
-explainer_shap = shap.TreeExplainer(model)
-shap_values = explainer_shap.shap_values(pd.DataFrame([feature_values], columns=feature_names))
-if predicted_class == 1:
-    shap.force_plot(explainer_shap.expected_value[1], shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
-else:
-    shap.force_plot(explainer_shap.expected_value[0], shap_values[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
-plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
-st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation')
